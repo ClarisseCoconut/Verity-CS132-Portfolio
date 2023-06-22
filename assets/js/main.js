@@ -4,6 +4,28 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+const fadeElements = document.querySelectorAll('.fade-scroll');
+
+const fadeInOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.3, // Adjust this value to control the fade-in point
+};
+
+const fadeObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, fadeInOptions);
+
+fadeElements.forEach((element) => {
+  fadeObserver.observe(element);
+});
+
+
 (function($) {
 
 	var	$window = $(window),
