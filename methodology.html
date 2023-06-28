@@ -179,7 +179,7 @@
 					</div>
 					<footer>
 						<p>Want to see how it works? Check out our codes.</p>
-						<a href="#" class="button large scrolly">Google Collab</a>
+						<a href="https://colab.research.google.com/drive/1-GjnSkHtRfmRViiTFkgBUzMER3nfL77g?usp=sharing" target="_blank" class="button large scrolly">Google Collab</a>
 					</footer>	
 				</div>
 			</article>
@@ -188,7 +188,7 @@
 			<article id="top" class="wrapper style1" style="padding-top: 3rem; padding-bottom: 0.25rem;">
 				<div class="container medium">
 					<div class="paragraph-container fade-scroll delay-3s">
-						<p> As Data Scientists, it is also important to reach the specific conclusion we have on our proposed hypotheses, so we need to prove these by implementing a <strong>statistical testing</strong> on our preprocessed data.
+						<p> As Data Scientists, it is also important to reach the specific conclusion we have on our proposed hypotheses, so we need to provide this by implementing a <strong>statistical test</strong> on our data.
 						</p>
 					</div>
 				</div>
@@ -200,26 +200,45 @@
 				<div class="container">
 					<header>
 						<h1>Statistical Testing</h1>
-						<h2>In this section, we explore the trends on where the change points and peaks happened as well as associate possible events that caused these peaks on the twitter count </h2>
+						<h2>In this section, we work to find a conclusion for our study. Specifically, we aim to check if there is a significant difference between the pre-election and election period when it comes to the tweet frequency of mis/disinformation about the PhilHealth corruption attributed to Risa Hontiveros. </h2>
 					</header>
 					<div class = "container large">
 						<div class="break-line"></div>
 					</div>
 					<div class="container medium">
 						<p style = "font-family: inherit; font-size: 25px; text-align: justify;">
-							sample text
-						</p>
-						<img src = "images/peaks_change.png" class="image featured"><br><br>
-						<p style = "font-family: Open Sans; font-size: 25px; text-align: justify;">
-							sample text
-						</p>
+							<h3>Segmented Linear Regression</h3>
+							<br>
+							<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">The graph below shows the segmented linear regression (LR) vs support vector regression (SVR) of the two periods (pre-election & election) accounted for in the study. The scatter points dictate the actual values of the tweet count seen in the dataset while the SVR predicts the values of tweet frequency by taking into consideration the actual counts, thus, severely penalizing the furthest points while having minimal penalty for the closer points. The linear regression is segmented such that the linear regression for both periods are calculated. The linear regression for the pre-election period has a p-value of 0.0084 which means that the dates and the tweet counts are confirmed to have a positive linear relationship with each other. This means that the tweet counts increase as the date approaches the segmented line. The linear regression for the election period however, has a p-value of 0.3292 which means that we cannot be sure if the dates and the tweet counts have a positive linear or a negative linear relationship with each other (no actual relationship between the independent and dependent variables).
+							</p>
+						<img src = "images/lr_svr.png" class="image featured"><br>
+						<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">To compare if the tweet counts between the two periods are significantly different with each other, a statistical test must be performed which, in this case, is the Mann-Whitney U test that is a non-parametric test. Reasons for using this test and results are discussed further below.</p>
+					</div>
+					<div class="container medium">
+						<p style = "font-family: inherit; font-size: 25px; text-align: justify;">
+							<h3>Mann-Whitney U Test</h3>
+							<br>
+							<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">First, we divide the data set into pre-election (January 1, 2016 - January 8, 2022) and election period (January 9, 2022 onwards). </p>
+							<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">We then perform the Shapiro-Wilk test for normality for both of our periods. The results show that both pre-election and election periods have p-values of less than the significance level of 0.05. So, we reject the null hypothesis of the Shapiro-Wilk Test for both. Thus, the samples from both periods do not follow a normal distribution. This means that we cannot perform an independent samples t-test because we fail one of its assumptions which is normality of data. Hence, we now use a non-parametric test, specifically a Mann-Whitney U-Test  </p>
+						<img src = "images/shapiro.PNG" class="image featured"><br>
+						<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">We now check the assumptions for the Mann-Whitney U test. For more information about these assumptions, click <a href="https://statistics.laerd.com/statistical-guides/mann-whitney-u-test-assumptions.php" target="_blank"><b><u>here</u></b></a>.</p>
+						<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">For the first assumption, we indeed have one dependent variable that is measured at the continuous or ordinal level which is the frequency of tweets named count_linear.</p>
+						<img src = "images/assumption1.PNG"><br>
+						<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">For the second assumption, we have one independent variable (Date posted) that consists of two categorical, independent groups (pre-election and election period).</p>
+						<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">For the third assumption, we have independence of observations, which means that there is no relationship between the observations in each group of the independent variable or between the groups themselves. We can check this by using the duplicated().sum() method in pandas. We also already know that the two periods have different dates since we have divided the dataset earlier</p>
+					    <img src = "images/assumption3.PNG"><br>
+						<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">For the fourth assumption, we see that the distributions have the same shape by plotting a histogram.</p>
+						<img src = "images/assumption4.PNG" class="image featured"><br>
+						<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">We now proceed to perform the Mann-Whitney U Test since we have validated all the assumptions for the said test.</p>
+						<img src = "images/mann_whitney.PNG"><br>
+						<p style =  "font-family: inherit; font-size: 25px; text-align: justify;">From the results, the Mann-Whitney U statistic is 309.0 and the p-value is 0.1321. Since the p-value is less than the significance level of 0.05, we fail to reject the null hypothesis of our study. This means that there is no significant difference between the pre-election and election period in terms of the tweet frequency of mis/disinformation attributed to Risa Hontiveros.</p>
 					</div>
 					<div class = "container large">
 						<div class="break-line"></div>
 					</div>
 					<footer>
 						<p>Want to see how it works? Check out our codes.</p>
-						<a href="#" class="button large scrolly">Google Collab</a>
+						<a href="https://colab.research.google.com/drive/11ud-1RXl_-JE8PO1A6vvftNpJuuQi-50?usp=sharing" target="_blank" class="button large scrolly">Google Collab</a>
 					</footer>	
 				</div>
 			</article>
