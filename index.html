@@ -19,7 +19,8 @@
 				<ul class="container">
 					<li><a href="#home">Home</a></li>
 					<li><a href="#overview">Overview</a></li>
-					<li><a href="#data">Data Collection</a></li>
+					<li><a href="#data">Collection</a></li>
+					<li><a href="#explore">Exploration</a></li>
 					<li><a href="#methods">Modeling</a></li>
 					<li><a href="#results">Results</a></li>
 					<li><a href="#team">Team</a></li>
@@ -136,64 +137,143 @@
 				</div>
 			</article>
 
-		<!-- Data -->
-			<article id="data" class="wrapper style3">
-				<div class="container">
-					<header>
-						<h2>We mined the internet for fake news data.</h2>
-						<p>We examined a total of <b>105 tweets</b> (posted from <b>2016 to 2022</b>) and what they entail.</p>
-					</header>
-					<div class="row">
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-								<h3><a href="#">Keywords</a></h3>
-								<p><g>Ensuring no null values are found, ensuring format consistency, & using categorical encoding.</g></p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-								<h3><a href="#">Data Features</a></h3>
-								<p><g>Ensuring no null values are found, ensuring format consistency, & using categorical encoding.</g></p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-								<h3><a href="#">Visualization</a></h3>
-								<p><g>Ensuring no null values are found, ensuring format consistency, & using categorical encoding.</g></p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-								<h3><a href="#">General Preprocessing</a></h3>
-								<p><g>Ensuring no null values are found, ensuring format consistency, & using categorical encoding.</g></p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-								<h3><a href="#">Natural Language Processing</a></h3>
-								<p><g>Stemmatizatization, tokenization, lemmatization, and more.</g></p>
-							</article>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<article class="box style2">
-								<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-								<h3><a href="#">Time Series Analysis</a></h3>
-								<p><g>Null values are filled in using the predicted value given by linear interpolation.</g></p>
-							</article>
-						</div>
+		<!-- Data Collection -->
+		<article id="data" class="wrapper style3">
+			<div class="container">
+				<header>
+					<h2 style="margin-bottom: 10px;">We mined the internet for fake news data on</h2>
+					<h2><green><span class="underlineg">PhilHealth Corruption</span></green> Attributed to <pink><span class="underlinep">Risa Hontiveros</span></pink>.</h2>
+					<p>From 03/29/2023 to 06/28/2023, our team <b>manually</b> collected a total of <b>158 tweets</b> using the following criteria:</p>
+				</header>
+				<article class="box style4 pan-scroll-left">
+					<img src="assets/icon.png" alt="Logo" class="logo1">
+					<h3>Keywords</h3>
+					<p>The following keywords helped us search for tweets relevant to our topic.</p>
+					<div class="keyword-container">
+						<button class="keyword">risa</button>
+						<button class="keyword">hontiveros</button>
+						<button class="keyword">philhealth</button>
+						<button class="keyword">funds</button>
+						<button class="keyword">corruption</button>
+						<button class="keyword">anomalya</button>
+						<button class="keyword">mocha</button>
+						<button class="keyword">corrupt</button>
+						<button class="keyword">hontivirus</button>
 					</div>
-					<footer>
-						<p>Take a look at our dataset here.</p>
-						<a href="https://docs.google.com/spreadsheets/d/1CznHqyqnJfAZ2aU_tWQG_oTfUZqpbySo4uAM13OOFNo/edit#gid=107810933" 
-						 class="button large scrolly">Google Sheets</a>
-					</footer>
+				</article>
+				<article class="box style4 pan-scroll-right">
+					<h3>Timeframe</h3>
+					<p style="margin-bottom: 0;">To limit the scope of the study, we only collected tweets posted from <b>2016</b> to <b>2022</b>.</p>
+				</article>
+				<article class="box style4 pan-scroll-left">
+					<h3>Verified Mis/Disinformation</h3>
+					<p>We made sure the tweets were "fact-checkable" and not mere opinions, since opinions are not considered "fake news".</p>
+					<p style="margin-bottom: 0.5rem;">Our trusted sources for verification include:</p>
+					<div class="keyword-container">
+						<button class="keyword">VERA Files</button>
+						<button class="keyword">Rappler</button>
+						<button class="keyword">FactRakers</button>
+						<button class="keyword">Agence France-Presse</button>
+					</div>
+					<p style="margin-bottom: 0;">Here are sample tweets from our dataset that pass this criteria:</p>
+				</article>
+				<div class="row">
+					<div class="col-4 col-6-medium col-12-small">
+						<a class="image featured image-container"><img src="images/sample1.png" alt="" /></a>
+					</div>
+					<div class="col-4 col-6-medium col-12-small">
+						<a class="image featured image-container"><img src="images/sample2.png" alt="" /></a>
+					</div>
+					<div class="col-4 col-6-medium col-12-small">
+						<a class="image featured image-container"><img src="images/sample3.png" alt="" /></a>
+					</div>
+				</div>	
+				<div class="container medium">
+					<p class="research-question" style="margin-bottom: 1em;">Find our dataset here.</p>
+					<a href="https://docs.google.com/spreadsheets/d/1CznHqyqnJfAZ2aU_tWQG_oTfUZqpbySo4uAM13OOFNo/edit#gid=107810933" 
+					target="_blank" class="button large scrolly">Google Sheets</a>
 				</div>
-			</article>
+			</div>
+		</article>
+
+		<!-- Data Exploration -->
+		<article id="explore" class="wrapper style5">
+			<div class="container">
+				<header>
+					<h1>Data Exploration</h1>
+					<p>At this point, we have the data to analyze. But before we jump to modeling, we need to make sure our data is clean.</p>
+				</header>
+				<div class="green-box pan-scroll-left">
+					<h3><white><span class="icon"><i class="loading-icon fas fa-spinner fa-spin"></i> Preprocessing</white></h3>
+				</div>
+				<div class="row">
+					<div class="col-4 col-6-medium col-12-small">
+						<article class="box style5" onclick="toggleBoxContent(this)">
+							<h3>General<br>Preprocessing</h3>
+							<div class="box-content">
+								<br>
+								<p><g>Before getting started we first import necessary modules for processing the data. These include <b>pandas</b>, <b>matplotlib.pyplot</b> and <b>seaborn</b>.</g></p>
+								<h4><green>Handling missing values</green></h4>
+								<p><g>The data columns that contained null values were <b>Add columns, Reviewer, Review, Account Bio, Tweet translated, Views, Remarks, Location,</b> and <b>Reasoning.</b>
+								Since these columns had many null values, our team decided to <b>drop</b> them completely.
+								<br><br>The same was done for columns we had no use for, like the <b>Account bio, Tweet translated, Views, Remarks, Location, Reasoning,</b> and <b>Screenshot</b>.<br><br>
+								For columns with few null values and that may prove to be useful in our research question, we chose to <b>impute</b> values. For example, in the <b>Quote tweets</b> 
+								and <b>Replies</b> data column, null values actually meant there were 0 quote tweets/replies for a certain post. Thus, we decided to impute the value <b>0</b> in the null 
+								cells of these columns.<br>Note as well that a similar step was done for the <b>Rating</b> column wherein the imputed value is the categorical data <b>"False"</b>.
+								</g></p>
+								<h4><green>Ensuring formatting consistency</green></h4>
+								<p><g>Having an inconsistent format may cause the exploration of the data to have an error or display wrong results.
+									Hence, we needed to ensure that the data types were consistent in each column of data. <br><br>Such is the case with the 
+									<b>Date Posted</b> and <b>Timestamp</b> columns. Since their values should be timestamps and not strings, we converted their values into the 
+									<b>datetime</b> datatype. We also used the .replace method to modify entries in the <b>Rating</b> and <b>Followers</b> columns which had inconsistent formats 
+									For example, both numbers with ("2,384") and without ("2384") commas would appear in the dataset.<br><br>
+									Note that these errors in the formatting were found as the team were exploring the data.
+								</g></p>
+								<h4><green>Categorical Encoding</green></h4>
+								<p><g>In this section, we convert categorical values into integer formats so that when we feed the data to our machine learning model, 
+									we're able to receive better results and predictions. <br><br>There are two commonly used categorical encoding methods: <b>one hot encoding</b> and <b>integer encoding</b>. 
+									Our team used <b>one hot encoding</b> for <b>Rating</b> and <b>Content type</b> since the values of these data columns don't have an inherent ordering.
+									<br><br>Note that the Content type column had at most 1 content type, while in the Rating column there were some data that had 2 or more ratings.
+								</g></p>
+							</div>
+						</article>
+					</div>
+					<div class="col-4 col-6-medium col-12-small">
+						<article class="box style5" onclick="toggleBoxContent(this)">
+							<h3>Natural Language Processing</h3>
+							<div class="box-content">
+								<br>
+								<p><g>After the necessary preprocessing, we move on to natural language processing. Here, we standardize all the tweets in the dataset. 
+									For example, we want 'Risa' and 'risa' to be the same value as they mean the same but have different formats. We also want to transform any unnecessary data 
+									such as emoticons and emojis by converting them into words. By doing this, we ensure that every piece of data can be processed for our modeling.<br><br>
+									To start, we import the necessary modules: <b>re, copy, string,</b> and <b>nltk</b>.
+								</g></p>
+								<h4><green>Removal of Emojis & Emoticons</green></h4>
+								<p><g>
+									We would have done this for both the 'Account bio' column and the 'Tweets; column. But since we dropped the account bio column, 
+									we will only be performing NLP on the <b>Tweets</b>. In addition, this is not exactly part of our research question, 
+									but this data may be useful in the data modeling section of the project so we still chose to process this data. <br><br>
+									To turn emojis to words, we pulled a database for emojis from the internet so that we know what text to return for each emoji. 
+									We then use this database to change the emojis into workable texts/strings. (ex)
+								</g></p>
+							</div>
+						</article>
+					</div>
+					<div class="col-4 col-6-medium col-12-small">
+						<article class="box style5" onclick="toggleBoxContent(this)">
+							<h3>Time Series<br>Analysis</h3>
+							<div class="box-content">
+								<!-- Content for the Event Detection Model box -->
+							</div>
+						</article>
+					</div>
+				</div>
+				<br><br>
+				<div class="green-box pan-scroll-left">
+					<h3><white><span class="graph-icon"><i class="fas fa-chart-line"></i></span> Visualization</white></h3>
+				</div>
+			</div>
+		</article>
 
 			<!-- Methods -->
 			<article id="methods" class="wrapper style2">
