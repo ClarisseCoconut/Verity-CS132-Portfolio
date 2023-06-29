@@ -3,7 +3,11 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+function toggleBoxContent(box) {
+	box.classList.toggle("expand");
+  }
 
+// --------- for fade-scroll --------- //
 const fadeElements = document.querySelectorAll('.fade-scroll');
 
 const fadeInOptions = {
@@ -24,6 +28,52 @@ const fadeObserver = new IntersectionObserver((entries, observer) => {
 fadeElements.forEach((element) => {
   fadeObserver.observe(element);
 });
+// ------------------------------------- //
+
+// --------- for pan-ins --------- //
+const panElementsL = document.querySelectorAll('.pan-scroll-left');
+
+const panInOptionsL = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.3, // Adjust this value to control the fade-in point
+};
+
+const panObserverL = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('pan-in-left');
+      observer.unobserve(entry.target);
+    }
+  });
+}, panInOptionsL);
+
+panElementsL.forEach((element) => {
+  panObserverL.observe(element);
+});
+
+
+const panElementsR = document.querySelectorAll('.pan-scroll-right');
+
+const panInOptionsR = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.3, // Adjust this value to control the fade-in point
+};
+
+const panObserverR = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('pan-in-right');
+      observer.unobserve(entry.target);
+    }
+  });
+}, panInOptionsR);
+
+panElementsR.forEach((element) => {
+  panObserverR.observe(element);
+});
+// ------------------------------------- //
 
 
 (function($) {
