@@ -214,15 +214,17 @@
 								<br>
 								<p><g>Before getting started we first import necessary modules for processing the data. These include <b>pandas</b>, <b>matplotlib.pyplot</b> and <b>seaborn</b>.</g></p>
 								<h4><green>Handling missing values</green></h4>
-								<p><g>The data columns that contained null values were <b>Add columns, Reviewer, Review, Account Bio, Tweet translated, Views, Remarks, Location,</b> and <b>Reasoning.</b>
-								Since these columns had many null values, our team decided to <b>drop</b> them completely.
-								<br><br>The same was done for columns we had no use for, like the <b>Account bio, Tweet translated, Views, Remarks, Location, Reasoning,</b> and <b>Screenshot</b>.<br><br>
-								For columns with few null values and that may prove to be useful in our research question, we chose to <b>impute</b> values. For example, in the <b>Quote tweets</b> 
-								and <b>Replies</b> data column, null values actually meant there were 0 quote tweets/replies for a certain post. Thus, we decided to impute the value <b>0</b> in the null 
-								cells of these columns.<br>Note as well that a similar step was done for the <b>Rating</b> column wherein the imputed value is the categorical data <b>"False"</b>.
+								<p><g>
+									The data columns that contained null values were <b>Add columns, Reviewer, Review, Account Bio, Tweet translated, Views, Remarks, Location,</b> and <b>Reasoning.</b>
+									Since these columns had many null values, our team decided to <b>drop</b> them completely.
+									<br><br>The same was done for columns we had no use for, like the <b>Account bio, Tweet translated, Views, Remarks, Location, Reasoning,</b> and <b>Screenshot</b>.<br><br>
+									For columns with few null values and that may prove to be useful in our research question, we chose to <b>impute</b> values. For example, in the <b>Quote tweets</b> 
+									and <b>Replies</b> data column, null values actually meant there were 0 quote tweets/replies for a certain post. Thus, we decided to impute the value <b>0</b> in the null 
+									cells of these columns.<br>Note as well that a similar step was done for the <b>Rating</b> column wherein the imputed value is the categorical data <b>"False"</b>.
 								</g></p>
 								<h4><green>Ensuring formatting consistency</green></h4>
-								<p><g>Having an inconsistent format may cause the exploration of the data to have an error or display wrong results.
+								<p><g>
+									Having an inconsistent format may cause the exploration of the data to have an error or display wrong results.
 									Hence, we needed to ensure that the data types were consistent in each column of data. <br><br>Such is the case with the 
 									<b>Date Posted</b> and <b>Timestamp</b> columns. Since their values should be timestamps and not strings, we converted their values into the 
 									<b>datetime</b> datatype. We also used the .replace method to modify entries in the <b>Rating</b> and <b>Followers</b> columns which had inconsistent formats 
@@ -230,7 +232,8 @@
 									Note that these errors in the formatting were found as the team were exploring the data.
 								</g></p>
 								<h4><green>Categorical Encoding</green></h4>
-								<p><g>In this section, we convert categorical values into integer formats so that when we feed the data to our machine learning model, 
+								<p><g>
+									In this section, we convert categorical values into integer formats so that when we feed the data to our machine learning model, 
 									we're able to receive better results and predictions. <br><br>There are two commonly used categorical encoding methods: <b>one hot encoding</b> and <b>integer encoding</b>. 
 									Our team used <b>one hot encoding</b> for <b>Rating</b> and <b>Content type</b> since the values of these data columns don't have an inherent ordering.
 									<br><br>Note that the Content type column had at most 1 content type, while in the Rating column there were some data that had 2 or more ratings.
@@ -244,17 +247,41 @@
 							<div class="box-content">
 								<br>
 								<p><g>After the necessary preprocessing, we move on to natural language processing. Here, we standardize all the tweets in the dataset. 
-									For example, we want 'Risa' and 'risa' to be the same value as they mean the same but have different formats. We also want to transform any unnecessary data 
-									such as emoticons and emojis by converting them into words. By doing this, we ensure that every piece of data can be processed for our modeling.<br><br>
-									To start, we import the necessary modules: <b>re, copy, string,</b> and <b>nltk</b>.
+									By doing this, we ensure that every piece of data can be processed for our modeling.<br><br> To start, we again import the necessary modules: 
+									<b>re, copy, string,</b> and <b>nltk</b>.
 								</g></p>
 								<h4><green>Removal of Emojis & Emoticons</green></h4>
 								<p><g>
+									Here, we want to transform any unnecessary data such as emoticons and emojis & convert them into words. 
 									We would have done this for both the 'Account bio' column and the 'Tweets; column. But since we dropped the account bio column, 
 									we will only be performing NLP on the <b>Tweets</b>. In addition, this is not exactly part of our research question, 
 									but this data may be useful in the data modeling section of the project so we still chose to process this data. <br><br>
-									To turn emojis to words, we pulled a database for emojis from the internet so that we know what text to return for each emoji. 
-									We then use this database to change the emojis into workable texts/strings. (ex)
+									To turn emojis to words, we used Emoji Dictionary, a database for emojis, to <b>convert</b> the emojis into workable texts/strings.<br><br>
+									We also used a database for the emoticons, since they are basically just combinations of symbols similar in use to graphical emojis. 
+									However, we chose to <b>remove</b> emoticons instead of converting them, as we no longer found it worthwhile to do so.
+								</g></p>
+								<h4><green>Translating and Lowercasing</green></h4>
+								<p><g>
+									Since we finished converting all the non-characters into workable texts, we now focus in making the word formats the same.
+									For example, we want 'Risa' and 'risa' to be the same value as they mean the same albeit having different formats.
+									We also know that there are <b>multilingual data</b> from this column, so we must first translate it all into <b>English</b> before converting all the characters into <b>lowercase</b>.
+									<br><br>To do so, we imported a <b>translator</b> that will <b>automatically</b> convert the multilingual text into the same language for us. However, this is not 100% accurate
+									as there are sometimes contexts in language that machines will find difficult to translate. <br><br>
+									Also take note that our team decided to translate the languages into English as, compared to Filipino, it is the one with more adequate language databases.
+								</g></p>
+								<h4><green>Tokenization and Stop Words Removal</green></h4>
+								<p><g>
+									In the <b>Tweets</b> data column, we removed commonly used words without any real meaning, like 'as', 'like', and 'and'. These are what we call <b>stop words</b>. 
+									We also <b>tokenized</b>. Tokenizing means that we get the words either by phrase, by sentence, or by word. 
+									This is important as the structure of the data is crucial in the efficiency of machine learning algorithms. Again, though this kind of processing 
+									is not of utmost importance in our research question, this may serve useful in future data modeling processes, hence its execution.
+								</g></p>
+								<h4><green>Stemming and Lemmatization</green></h4>
+								<p><g>
+									Stemming and Lemmatization are both text normalization techniques used in preparing words for processings. <b>Stemming</b> refers to chopping the ends of words 
+									and removing derivational affixes. It is usually used in producing variants of the word base, which helps in returning the same value.
+									For example, cleaning should also return the value for clean, cleaned, and cleans. <b>Lemmatization</b> on the other hand uses vocabulary instead of just word reduction 
+									to analyze a word's meaning.To do this, we utilized <b>'Porter Stemmer'</b> & <b>'Wordnet Lemmatizer'</b>.
 								</g></p>
 							</div>
 						</article>
@@ -262,8 +289,14 @@
 					<div class="col-4 col-6-medium col-12-small">
 						<article class="box style5" onclick="toggleBoxContent(this)">
 							<h3>Time Series<br>Analysis</h3>
-							<div class="box-content">
-								<!-- Content for the Event Detection Model box -->
+							<div class="box-content"> <br>
+								<h4><green>Interpolation</green></h4>
+								<p><g>
+									Interpolation is a type of estimation in which known values/obtained data are used to guess the value of unknown data. 
+									These interpolated values are then inderted into what would otherwise be null data. <br><br>
+									In our exploration, we did 4 different interpolation techniques on the <b>'Date Posted'</b> data column: <b>nearest interpolation, linear interpolation, weighted time interpolation</b> and <b>average per month interpolation</b>. 
+									<br><br>Although we ended up using the average per month values as it is the simplest method, our team still performed the other types of interpolation so that we may have choices for future works.
+								</g></p>
 							</div>
 						</article>
 					</div>
@@ -272,6 +305,60 @@
 				<div class="green-box pan-scroll-left">
 					<h3><white><span class="graph-icon"><i class="fas fa-chart-line"></i></span> Visualization</white></h3>
 				</div>
+				<div class="row">
+					<div class="col-6 col-6-medium col-12-small">
+						<article class="box style2">
+							<a href="https://colab.research.google.com/drive/1vYuixYmTNYqK65RqL5k2_4Gomp4IuUkf?usp=sharing" 
+							target="_blank" class="image featured"><img src="images/lineplot.png" alt="" /></a>
+							<h3>Line Plot</h3>
+							<p><g>This plot shows the change over time of the total <b>counts of tweets</b> on a <b>monthly</b> basis.
+								The x-axis are the months with their corresponding year, and the y-axis is the total counts of tweets.
+								This helps us see if tweets increase/decrease significantly in a certain month.
+							</g></p>
+						</article>
+					</div>
+					<div class="col-6 col-6-medium col-12-small">
+						<article class="box style2">
+							<a href="https://colab.research.google.com/drive/1vYuixYmTNYqK65RqL5k2_4Gomp4IuUkf?usp=sharing" 
+							target="_blank" class="image featured"><img src="images/histogram.png" alt="" /></a>
+							<h3><a href="methodology.html#stat-test">Histogram</a></h3>
+							<p><g>Using seaborn for plotting, this graph shows us the <b>counts of tweets</b> during <b>yearly</b> time periods.</g></p>
+						</article>
+					</div>
+					<div class="col-6 col-6-medium col-12-small">
+						<article class="box style2">
+							<a href="https://colab.research.google.com/drive/1vYuixYmTNYqK65RqL5k2_4Gomp4IuUkf?usp=sharing" 
+							target="_blank" class="image featured"><img src="images/heatmap.png" alt="" /></a>
+							<h3><a href="methodology.html#stat-test">Heatmap</a></h3>
+							<p><g>This graph visualizes the <b>correlation</b> between the <b>no. of followers</b> of an account & the <b>engagement</b> on their tweet.</g></p>
+						</article>
+					</div>
+					<div class="col-6 col-6-medium col-12-small">
+						<article class="box style2">
+							<a href="https://colab.research.google.com/drive/1vYuixYmTNYqK65RqL5k2_4Gomp4IuUkf?usp=sharing" 
+							target="_blank" class="image featured"><img src="images/barplot.png" alt="" /></a>
+							<h3><a href="methodology.html#stat-test">Barplot</a></h3>
+							<p><g>This graph compares the <b>number of followers</b> to the different <b>account types</b>.
+								It shows that Identified twitter accounts usually have more followers than Anonymous ones.</g></p>
+						</article>
+					</div>
+				</div>		
+			</div>
+			<div class="container medium">
+				<br><br>
+				<div class="break-line"></div>
+				<h1 style="font-size: 2.5em">Want to learn more?</h1>
+				<div class="row">
+					<div class="col-6 col-6-medium col-12-small">
+						<p class="research-question" style="margin-bottom: 1em;">View our <b>Pre-processing</b> codes here.</p>
+						<a href="https://colab.research.google.com/drive/14Po1DvztavuQy9KhldqtAjI8kBpasXqY?usp=sharing" 
+						target="_blank" class="button large scrolly">Google Collab</a>
+					</div>
+					<div class="col-6 col-6-medium col-12-small">
+						<p class="research-question" style="margin-bottom: 1em;">View our <b>Visualization</b> codes here.</p>
+						<a href="https://colab.research.google.com/drive/1vYuixYmTNYqK65RqL5k2_4Gomp4IuUkf?usp=sharing" 
+						target="_blank" class="button large scrolly">Google Collab</a>
+					</div>
 			</div>
 		</article>
 
@@ -299,7 +386,7 @@
 						</div>
 					</div>
 					<footer>
-						<p>So what does this entail? What are the implications? Conclusions further discussed below.</p>
+						<p>So what does this entail? What are the implications?</p>
 					</footer>
 				</div>
 			</article>
@@ -357,7 +444,7 @@
 							<span class="image fit"><img src="images/team1.jpg" alt="" /></span>
 							<section class="box style1">
 								<h3>Clarisse Bianca Bucu</h3>
-								<p><g>Hi! I'm Clarisse, a 2nd-year BS CS student and the web developer behind <stronk>Verity</stronk>!
+								<p><g>Hi! I'm Clarisse, a 2nd-year BS CS student and the main web developer behind <stronk>Verity</stronk>!
 									I enjoy transforming ideas into reality & building visually appealing websites. Although I'm still 
 									learning, I approach every project with enthusiasm and a drive to deliver high-quality results. ❤️
 								</g></p>
